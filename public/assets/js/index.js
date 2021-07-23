@@ -63,13 +63,14 @@ function createEditButtonElement(task){
   var button = createTaskActionButtonElement("Editar", task, function() {
     editRegistry(task);
   });
-
+  button.classList.add('warning');
   return button;
 }
 function createDeleteButtonElement(task){
   var button = createTaskActionButtonElement("Excluir", task, function () {
     removeRegistry(task);
   });
+  button.classList.add('danger');
   return button;
 }
 function createTaskActionButtonElement(title, task, action = ()=>{}){

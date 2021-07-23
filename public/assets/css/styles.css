@@ -1,6 +1,12 @@
 :root {
   --borderRadius: 5px;
-  --primaryColor: #003886;
+  --primaryColor: #3067b4;
+  --primaryColorDarken: #003886;
+  --successColor: #008612;
+  --warningColorDarken: #db9239;
+  --warningColor: #ffa841;
+  --dangerColor: rgb(194, 0, 55);
+  --dangerColorDarken: #a3002e;
 }
 
 * {
@@ -15,7 +21,25 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #f1f1f1;
 }
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: var(--primaryColorDarken);
+  opacity: 0.5; /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: var(--primaryColorDarken);
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: var(--primaryColorDarken);
+}
+
 .shadow {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
@@ -28,38 +52,6 @@ body {
   background-color: rgb(247, 248, 249);
   margin-top: 50px;
   padding: 20px;
-}
-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
-}
-header img.logo {
-  height: 40px;
-  margin-right: 10px;
-}
-header h1 {
-  color: var(--primaryColor);
-}
-
-main {
-}
-main section#newTaskFormContainer {
-  background-color: white;
-  padding: 0.6rem 0.8rem;
-}
-main section#newTaskFormContainer form {
-  display: flex;
-  align-items: center;
-  font-size: 1.25rem;
-}
-main section#newTaskFormContainer form input#taskTitle {
-  flex: 1;
-  outline: none;
-  border: none;
-  padding: 10px 5px;
-  font-size: inherit;
 }
 
 .btn {
@@ -86,38 +78,94 @@ main section#newTaskFormContainer form input#taskTitle {
   color: white;
 }
 .btn.primary:hover {
-  background-color: #27589c;
-  border: 2px solid #275eac;
+  background-color: var(--primaryColorDarken);
+  border: 2px solid var(--primaryColorDarken);
+}
+.btn.danger {
+  color: white;
+  background-color: var(--dangerColor);
+}
+.btn.danger:hover {
+  background-color: var(--dangerColorDarken);
+}
+.btn.warning {
+  color: white;
+  background-color: var(--warningColor);
+}
+.btn.warning:hover {
+  background-color: var(--warningColorDarken);
 }
 
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header img.logo {
+  height: 40px;
+  margin-right: 10px;
+}
+header h1 {
+  color: var(--primaryColor);
+}
+main {
+}
+main section#newTaskFormContainer {
+  background-color: white;
+  padding: 0.6rem 0.8rem;
+  margin: 30px 0;
+}
+main section#newTaskFormContainer form {
+  display: flex;
+  align-items: center;
+  font-size: 1.25rem;
+}
+main section#newTaskFormContainer form input#taskTitle {
+  flex: 1;
+  outline: none;
+  border: none;
+  padding: 10px 5px;
+  font-size: inherit;
+}
 main hr {
-  margin: 2rem 0;
+  position: relative;
+  margin-top: 3rem;
   border: 0;
   border-bottom: 0.5px solid #d1d1d1;
 }
-
-ul li {
+main section#todolistContainer {
+  margin-top: 1rem;
+}
+main section#todolistContainer ul li {
   display: flex;
   width: 100%;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #c1c1c1;
+  padding: 10px 8px;
 }
-
-ul li span {
+main section#todolistContainer ul li span {
   flex: 1;
   padding: 10px 20px;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
 }
-
-ul li span.done {
+main section#todolistContainer ul li span.done {
   text-decoration: line-through;
   color: #a1a1a1;
 }
-
-ul li input[type='checkbox'] {
+main section#todolistContainer ul li input[type='checkbox'] {
   width: 20px;
   height: 20px;
+}
+main section#todolistContainer ul li .btn {
+  margin-left: 10px;
+}
+
+footer {
+  position: absolute;
+  bottom: 15px;
+  color: #818181;
+  font-size: 1rem;
 }
 
 img#bgImg {
