@@ -49,17 +49,35 @@ function createLineElement(task) {
     lineDescription.classList.add('done');
   }
 
-  var deleteButton = document.createElement('button');
-  deleteButton.innerText = "X";
-  deleteButton.onclick = function () {
-    removeRegistry(task);
-  }
+  var editButton = createEditButtonElement(task);
+  var deleteButton = createDeleteButtonElement(task);
 
   newLine.appendChild(checkbox);
   newLine.appendChild(lineDescription);
+  newLine.appendChild(editButton);
   newLine.appendChild(deleteButton);
 
   return newLine;
+}
+function createEditButtonElement(task){
+  var button = createTaskActionButtonElement("Editar", task, function() {
+    editRegistry(task);
+  });
+
+  return button;
+}
+function createDeleteButtonElement(task){
+  var button = createTaskActionButtonElement("Excluir", task, function () {
+    removeRegistry(task);
+  });
+  return button;
+}
+function createTaskActionButtonElement(title, task, action = ()=>{}){
+  var button = document.createElement('button');
+  button.innerText = title;
+  button.onclick = action;
+  button.classList.add('btn');
+  return button;
 }
 function addNewLineElement(newLine) {
   document.getElementById('todolist').appendChild(newLine);
@@ -81,6 +99,11 @@ function resetForm() {
   taskTitleInputElement.focus();
 }
 function removeRegistry(task) {
+  var confirmExclusion = confirm("Deseja excluir: " + task.title);
+  if(!confirmExclusion){
+    return;
+  }
+
   document.getElementById("task_" + task.id).remove();
   tasks = tasks.filter(
     function (tsk) {
@@ -128,6 +151,7 @@ function onSubmitEventListener(event) {
     console.error(error);
   }
 }
+function editRegistry(task){}
 
 var form = document.querySelector('form');
 var taskTitleInputElement = document.getElementById('taskTitle');

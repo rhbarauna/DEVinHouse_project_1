@@ -7,26 +7,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./public/assets/css/styles.css">
+  <script src="./public/assets/js/index.js" defer></script>
   <title>Controle de Tarefas</title>
 </head>
 
 <body>
-  <header>
-    <h1>Lista de Tarefas</h1>
-  </header>
-  <main>
-    <section>
-      <form>
-        <label for="taskTitle">Nova tarefa:</label>
-        <input type="text" id="taskTitle" placeholder="Coloque aqui a tarefa à ser adicionada">
-        <button type="submit">Salvar tarefa</button>
-      </form>
-    </section>
-    <section>
-      <ul id="todolist"></ul>
-    </section>
-  </main>
-  <footer></footer>
+  <div class="container border shadow">
+    <header>
+      <img class="logo" src="./public/assets/img/to-do-list.png" alt="Logo da página">
+      <h1>Lista de Tarefas</h1>
+    </header>
+    <main>
+      <section id="newTaskFormContainer" class="border shadow">
+        <form>
+          <label for="taskTitle"></label>
+          <input type="text" id="taskTitle" placeholder="Adicionar nova tarefa..." autofocus autocomplete="false">
+          <button type="submit" class="btn primary">Salvar</button>
+        </form>
+      </section>
+      <hr>
+      <section>
+        <ul id="todolist"></ul>
+      </section>
+    </main>
+    <footer></footer>
+  </div>
+  <img id="bgImg" src="public/assets/img/to-do-list.png" alt="Imagem de fundo">
+
 </body>
 
 </html>
