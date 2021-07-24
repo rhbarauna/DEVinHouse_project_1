@@ -36,7 +36,7 @@ function verifyTaskByTitle(taskTitle) {
 
 function createLineElement(task) {
   var newLine = document.createElement('li');
-  newLine.class = "item";
+  newLine.classList.add("item");
   newLine.id = "task_" + task.id;
 
   var checkbox = document.createElement('input');
@@ -63,10 +63,17 @@ function createLineElement(task) {
 }
 
 function createDeleteButtonElement(task){
-  var button = createTaskActionButtonElement("Excluir", task, function () {
-    removeRegistry(task);
+  var button = createTaskActionButtonElement("Excluir", task, function() {
+    var confirmExclusion = confirm("Deseja excluir: " + task.title);
+    if(!confirmExclusion){
+      return;
+    }
+    
+    removeLineElement(task);
+    removeRegistry(task)
   });
   button.classList.add('danger');
+  button.title = "Botão para excluir a tarefa: "+ task.title;
   return button;
 }
 
@@ -100,13 +107,16 @@ function resetForm() {
   taskTitleInputElement.focus();
 }
 
-function removeRegistry(task) {
-  var confirmExclusion = confirm("Deseja excluir: " + task.title);
-  if(!confirmExclusion){
-    return;
-  }
 
-  document.getElementById("task_" + task.id).remove();
+function removeLineElement(task) {
+  var line = document.getElementById("task_" + task.id); 
+  line.classList.add('fadeOut');
+  setTimeout( function() {
+    line.remove();
+  }, 500);
+}
+
+function removeRegistry(task) {
   tasks = tasks.filter(
     function (tsk) {
       return tsk.id !== task.id;

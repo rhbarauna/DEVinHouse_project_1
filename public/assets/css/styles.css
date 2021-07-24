@@ -15,6 +15,7 @@
   list-style: none;
   box-sizing: border-box;
 }
+
 h1,
 h2,
 h3,
@@ -24,6 +25,7 @@ h6,
 button {
   letter-spacing: 1px;
 }
+
 body {
   font-family: 'Roboto', sans-serif;
   line-height: 1.6;
@@ -32,34 +34,44 @@ body {
   align-items: center;
   background-color: #f1f1f1;
 }
+
 ::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: var(--primaryColorDarken);
   opacity: 0.5; /* Firefox */
 }
+
 ::-ms-input-placeholder {
   /* Internet Explorer 10-11 */
   color: var(--primaryColorDarken);
   opacity: 0.5; /* Firefox */
 }
+
 ::-ms-input-placeholder {
   /* Microsoft Edge */
   color: var(--primaryColorDarken);
   opacity: 0.5; /* Firefox */
 }
+
 .shadow {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
+
 .border {
   border-radius: var(--borderRadius);
 }
+
 .container {
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
   width: 60vw;
   min-height: 60vh;
   background-color: rgb(247, 248, 249);
   margin-top: 50px;
   padding: 20px;
 }
+
 .btn {
   display: inline-block;
   font-weight: 400;
@@ -79,57 +91,68 @@ body {
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
+
 .btn-small {
   border: 1px solid transparent;
   padding: 0.3rem 0.7rem;
   font-size: 0.8rem;
 }
+
 .btn.primary {
   background-color: var(--primaryColor);
   color: white;
 }
+
 .btn.primary:hover {
   background-color: var(--primaryColorDarken);
   border: 2px solid var(--primaryColorDarken);
 }
+
 .btn.danger {
   color: white;
   background-color: var(--dangerColor);
 }
+
 .btn.danger:hover {
   background-color: var(--dangerColorDarken);
 }
+
 .btn.warning {
   color: white;
   background-color: var(--warningColor);
 }
+
 .btn.warning:hover {
   background-color: var(--warningColorDarken);
 }
+
 header {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 header img.logo {
   height: 40px;
   margin-right: 20px;
 }
+
 header h1 {
   color: var(--primaryColor);
 }
-main {
-}
+
 main section#newTaskFormContainer {
   background-color: white;
   padding: 0.6rem 0.8rem;
   margin: 30px 0;
 }
+
 main section#newTaskFormContainer form {
   display: flex;
   align-items: center;
   font-size: 1.25rem;
 }
+
 main section#newTaskFormContainer form input#taskTitle {
   flex: 1;
   outline: none;
@@ -137,18 +160,24 @@ main section#newTaskFormContainer form input#taskTitle {
   padding: 10px 5px;
   font-size: inherit;
 }
+
 main hr {
   position: relative;
   margin-top: 3rem;
   border: 0;
   border-bottom: 0.5px solid #d1d1d1;
 }
+
 main section#todolistContainer {
   margin-top: 2rem;
+  -webkit-transition: height 1000ms linear;
+  transition: height 1000ms linear;
 }
+
 main section#todolistContainer ul {
   margin-top: 1rem;
 }
+
 main section#todolistContainer ul li {
   display: flex;
   width: 100%;
@@ -156,29 +185,47 @@ main section#todolistContainer ul li {
   align-items: center;
   border-bottom: 1px solid #c1c1c1;
   padding: 10px 8px;
+  -webkit-transition: opacity 1000ms linear;
+  transition: opacity 1000ms linear;
+  animation: fadeIn 0.5s ease-in-out;
+  overflow: hidden;
 }
+
+main section#todolistContainer ul li.fadeOut {
+  height: 0;
+  opacity: 0;
+  border: 0;
+  padding: 0 8px;
+  animation: fadeOut 0.5s ease-in-out;
+}
+
 main section#todolistContainer ul li span {
   flex: 1;
   padding: 10px 20px;
   font-size: 1.15rem;
 }
+
 main section#todolistContainer ul li span.done {
   text-decoration: line-through;
   color: #a1a1a1;
 }
+
 main section#todolistContainer ul li input[type='checkbox'] {
   width: 20px;
   height: 20px;
 }
+
 main section#todolistContainer ul li .btn {
   margin-left: 10px;
 }
+
 footer {
-  position: absolute;
+  margin-top: 15px;
   bottom: 15px;
   color: #818181;
   font-size: 1rem;
 }
+
 img#bgImg {
   position: absolute;
   z-index: -1;
@@ -187,4 +234,31 @@ img#bgImg {
   margin-bottom: 23px;
   height: 317px;
   opacity: 0.15;
+}
+
+@keyframes fadeIn {
+  0% {
+    border: 0;
+    opacity: 0;
+    height: 0;
+  }
+  100% {
+    opacity: 1;
+    height: 70px;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    height: 70px;
+    border-width: 2px;
+    padding: 10px 8px;
+  }
+  100% {
+    opacity: 0;
+    height: -10px;
+    border-width: -10px;
+    padding: 0 8px;
+  }
 }
