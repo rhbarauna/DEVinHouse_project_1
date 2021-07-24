@@ -226,8 +226,10 @@ main section#todoListContainer ul li .btn {
   margin-left: 10px;
 }
 main section#todoListContainer #emptyListAlert {
-  padding: 10px;
+  padding: 20px;
   text-align: center;
+  transition: opacity 1000ms linear;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
 footer {
