@@ -77,7 +77,7 @@ function createTaskActionButtonElement(title, task, action = ()=>{}){
   var button = document.createElement('button');
   button.innerText = title;
   button.onclick = action;
-  button.classList.add('btn');
+  button.classList.add('btn', 'btn-small');
   return button;
 }
 function addNewLineElement(newLine) {

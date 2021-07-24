@@ -15,6 +15,15 @@
   list-style: none;
   box-sizing: border-box;
 }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button {
+  letter-spacing: 1px;
+}
 body {
   font-family: 'Roboto', sans-serif;
   line-height: 1.6;
@@ -23,23 +32,21 @@ body {
   align-items: center;
   background-color: #f1f1f1;
 }
-
 ::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: var(--primaryColorDarken);
   opacity: 0.5; /* Firefox */
 }
-
-:-ms-input-placeholder {
+::-ms-input-placeholder {
   /* Internet Explorer 10-11 */
   color: var(--primaryColorDarken);
+  opacity: 0.5; /* Firefox */
 }
-
 ::-ms-input-placeholder {
   /* Microsoft Edge */
   color: var(--primaryColorDarken);
+  opacity: 0.5; /* Firefox */
 }
-
 .shadow {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
@@ -48,12 +55,11 @@ body {
 }
 .container {
   width: 60vw;
-  height: 60vh;
+  min-height: 60vh;
   background-color: rgb(247, 248, 249);
   margin-top: 50px;
   padding: 20px;
 }
-
 .btn {
   display: inline-block;
   font-weight: 400;
@@ -72,6 +78,11 @@ body {
   cursor: pointer;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.btn-small {
+  border: 1px solid transparent;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.8rem;
 }
 .btn.primary {
   background-color: var(--primaryColor);
@@ -95,7 +106,6 @@ body {
 .btn.warning:hover {
   background-color: var(--warningColorDarken);
 }
-
 header {
   display: flex;
   justify-content: center;
@@ -103,7 +113,7 @@ header {
 }
 header img.logo {
   height: 40px;
-  margin-right: 10px;
+  margin-right: 20px;
 }
 header h1 {
   color: var(--primaryColor);
@@ -134,6 +144,9 @@ main hr {
   border-bottom: 0.5px solid #d1d1d1;
 }
 main section#todolistContainer {
+  margin-top: 2rem;
+}
+main section#todolistContainer ul {
   margin-top: 1rem;
 }
 main section#todolistContainer ul li {
@@ -160,14 +173,12 @@ main section#todolistContainer ul li input[type='checkbox'] {
 main section#todolistContainer ul li .btn {
   margin-left: 10px;
 }
-
 footer {
   position: absolute;
   bottom: 15px;
   color: #818181;
   font-size: 1rem;
 }
-
 img#bgImg {
   position: absolute;
   z-index: -1;
