@@ -4,6 +4,7 @@ function loadInitialList() {
     addNewLineElement(lineElement);
   });
 }
+
 function getFieldValue() {
   var field = taskTitleInputElement;
   var fieldValue = field.value.trim();
@@ -15,6 +16,7 @@ function getFieldValue() {
 
   return fieldValue;
 }
+
 function getSavedTasks() {
   var savedTasks = localStorage.getItem('taskList');
   if (!savedTasks) {
@@ -22,6 +24,7 @@ function getSavedTasks() {
   }
   return JSON.parse(savedTasks);
 }
+
 function verifyTaskByTitle(taskTitle) {
   var exists = tasks.filter(function (task) {
     return task.title == taskTitle;
@@ -30,6 +33,7 @@ function verifyTaskByTitle(taskTitle) {
     throw new Error("Task already exists");
   }
 }
+
 function createLineElement(task) {
   var newLine = document.createElement('li');
   newLine.class = "item";
@@ -49,23 +53,15 @@ function createLineElement(task) {
     lineDescription.classList.add('done');
   }
 
-  var editButton = createEditButtonElement(task);
   var deleteButton = createDeleteButtonElement(task);
 
   newLine.appendChild(checkbox);
   newLine.appendChild(lineDescription);
-  newLine.appendChild(editButton);
   newLine.appendChild(deleteButton);
 
   return newLine;
 }
-function createEditButtonElement(task){
-  var button = createTaskActionButtonElement("Editar", task, function() {
-    editRegistry(task);
-  });
-  button.classList.add('warning');
-  return button;
-}
+
 function createDeleteButtonElement(task){
   var button = createTaskActionButtonElement("Excluir", task, function () {
     removeRegistry(task);
@@ -73,6 +69,7 @@ function createDeleteButtonElement(task){
   button.classList.add('danger');
   return button;
 }
+
 function createTaskActionButtonElement(title, task, action = ()=>{}){
   var button = document.createElement('button');
   button.innerText = title;
@@ -80,9 +77,11 @@ function createTaskActionButtonElement(title, task, action = ()=>{}){
   button.classList.add('btn', 'btn-small');
   return button;
 }
+
 function addNewLineElement(newLine) {
   document.getElementById('todolist').appendChild(newLine);
 }
+
 function updateTaskList(task) {
   var oldTask = tasks.filter(function (tsk) {
     return tsk.id == task.id;
@@ -95,10 +94,12 @@ function updateTaskList(task) {
   }
   tasks.push(task)
 }
+
 function resetForm() {
   form.reset();
   taskTitleInputElement.focus();
 }
+
 function removeRegistry(task) {
   var confirmExclusion = confirm("Deseja excluir: " + task.title);
   if(!confirmExclusion){
@@ -113,9 +114,11 @@ function removeRegistry(task) {
   );
   persistTasks();
 }
+
 function persistTasks() {
   localStorage.setItem("taskList", JSON.stringify(tasks));
 }
+
 function updateTaskStatus(task) {
   task.isDone = !task.isDone;
   updateTaskList(task);
@@ -123,6 +126,7 @@ function updateTaskStatus(task) {
 
   document.querySelector('#task_' + task.id + ' span').classList.toggle('done');
 }
+
 function onSubmitEventListener(event) {
   event.preventDefault();
 
@@ -152,7 +156,6 @@ function onSubmitEventListener(event) {
     console.error(error);
   }
 }
-function editRegistry(task){}
 
 var form = document.querySelector('form');
 var taskTitleInputElement = document.getElementById('taskTitle');
