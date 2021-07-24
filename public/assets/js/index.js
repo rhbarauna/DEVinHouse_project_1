@@ -86,7 +86,8 @@ function createTaskActionButtonElement(title, task, action = ()=>{}){
 }
 
 function addNewLineElement(newLine) {
-  document.getElementById('todolist').appendChild(newLine);
+  todoList.appendChild(newLine);
+  hideEmptyListAlert();
 }
 
 function updateTaskList(task) {
@@ -107,12 +108,15 @@ function resetForm() {
   taskTitleInputElement.focus();
 }
 
-
 function removeLineElement(task) {
   var line = document.getElementById("task_" + task.id); 
   line.classList.add('fadeOut');
   setTimeout( function() {
     line.remove();
+
+    if(checkIfListIsEmpty()){
+      showEmptyListAlert();
+    }
   }, 500);
 }
 
@@ -166,9 +170,21 @@ function onSubmitEventListener(event) {
     console.error(error);
   }
 }
+function checkIfListIsEmpty() {
+  return todoList.childElementCount == 0;
+}
+
+function hideEmptyListAlert(){
+  emptyListAlert.classList.add('hidden');
+}
+function showEmptyListAlert(){
+  emptyListAlert.classList.remove('hidden');
+}
 
 var form = document.querySelector('form');
 var taskTitleInputElement = document.getElementById('taskTitle');
+var todoList = document.getElementById('todoList');
+var emptyListAlert = document.getElementById('emptyListAlert');
 var tasks = getSavedTasks();
 loadInitialList();
 

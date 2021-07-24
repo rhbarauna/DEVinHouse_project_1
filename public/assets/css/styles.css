@@ -1,5 +1,6 @@
 :root {
   --borderRadius: 5px;
+  --placeholderOpacity: 0.2;
   --primaryColor: #3067b4;
   --primaryColorDarken: #003886;
   --successColor: #008612;
@@ -38,19 +39,19 @@ body {
 ::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: var(--primaryColorDarken);
-  opacity: 0.5; /* Firefox */
+  opacity: var(--placeholderOpacity); /* Firefox */
 }
 
 ::-ms-input-placeholder {
   /* Internet Explorer 10-11 */
   color: var(--primaryColorDarken);
-  opacity: 0.5; /* Firefox */
+  opacity: var(--placeholderOpacity);
 }
 
 ::-ms-input-placeholder {
   /* Microsoft Edge */
   color: var(--primaryColorDarken);
-  opacity: 0.5; /* Firefox */
+  opacity: var(--placeholderOpacity);
 }
 
 .shadow {
@@ -128,6 +129,9 @@ body {
   background-color: var(--warningColorDarken);
 }
 
+.hidden {
+  display: none;
+}
 header {
   display: flex;
   justify-content: center;
@@ -170,17 +174,17 @@ main hr {
   border-bottom: 0.5px solid #d1d1d1;
 }
 
-main section#todolistContainer {
+main section#todoListContainer {
   margin-top: 2rem;
   -webkit-transition: height 1000ms linear;
   transition: height 1000ms linear;
 }
 
-main section#todolistContainer ul {
+main section#todoListContainer ul {
   margin-top: 1rem;
 }
 
-main section#todolistContainer ul li {
+main section#todoListContainer ul li {
   display: flex;
   min-width: 360px;
   max-height: 128px;
@@ -188,38 +192,42 @@ main section#todolistContainer ul li {
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #c1c1c1;
-  padding: 10px 8px;
+  padding: 10px 20px;
   -webkit-transition: opacity 1000ms linear;
   transition: opacity 1000ms linear;
   animation: fadeIn 0.5s ease-in-out;
 }
 
-main section#todolistContainer ul li.fadeOut {
+main section#todoListContainer ul li.fadeOut {
   height: 0;
   opacity: 0;
   border: 0;
-  padding: 0 8px;
+  padding: 0 20px;
   animation: fadeOut 0.5s ease-in-out;
 }
 
-main section#todolistContainer ul li span {
+main section#todoListContainer ul li span {
   flex: 1;
   padding: 10px 20px;
   font-size: 1.15rem;
 }
 
-main section#todolistContainer ul li span.done {
+main section#todoListContainer ul li span.done {
   text-decoration: line-through;
   color: #a1a1a1;
 }
 
-main section#todolistContainer ul li input[type='checkbox'] {
+main section#todoListContainer ul li input[type='checkbox'] {
   width: 20px;
   height: 20px;
 }
 
-main section#todolistContainer ul li .btn {
+main section#todoListContainer ul li .btn {
   margin-left: 10px;
+}
+main section#todoListContainer #emptyListAlert {
+  padding: 10px;
+  text-align: center;
 }
 
 footer {
